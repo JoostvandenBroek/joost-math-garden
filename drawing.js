@@ -2,6 +2,14 @@ const BACKGROUND_COLOUR = '#000000';
 const LINE_COLOUR = '#FFFFFF';
 const LINE_WIDTH = 15;
 
+// Extract the canvas border width from CSS file and convert it to an integer
+// to be able to use it in calculation of currentX and currentY when drawing
+// since the canvas border width has an influence on the canvas coordinates
+const CANVAS_ELEMENT = document.querySelector('.canvas1');
+const CANVAS_STYLE = window.getComputedStyle(CANVAS_ELEMENT);
+const CANVAS_BORDER_WIDTH = parseInt(CANVAS_STYLE.borderTopWidth);
+// console.log(CANVAS_BORDER_WIDTH);
+
 var currentX = 0;
 var currentY = 0;
 var previousX = 0;
@@ -40,8 +48,8 @@ function prepareCanvas() {
     canvas.addEventListener('mousedown', function (event) {
         // console.log('Mouse Pressed');
         isPainting = true;
-        currentX = event.clientX - canvas.offsetLeft;
-        currentY = event.clientY - canvas.offsetTop;
+        currentX = event.clientX - canvas.getBoundingClientRect().left - CANVAS_BORDER_WIDTH;
+        currentY = event.clientY - canvas.getBoundingClientRect().top - CANVAS_BORDER_WIDTH;
 
     });
 
@@ -49,10 +57,10 @@ function prepareCanvas() {
 
         if (isPainting) {
             previousX = currentX;
-            currentX = event.clientX - canvas.offsetLeft;
+            currentX = event.clientX - canvas.getBoundingClientRect().left - CANVAS_BORDER_WIDTH;
 
             previousY = currentY;
-            currentY = event.clientY - canvas.offsetTop;
+            currentY = event.clientY - canvas.getBoundingClientRect().top - CANVAS_BORDER_WIDTH;
 
             draw();
         }
@@ -75,8 +83,8 @@ function prepareCanvas() {
     canvas.addEventListener('touchstart', function (event) {
         // console.log('Touchdown!');
         isPainting = true;
-        currentX = event.touches[0].clientX - canvas.offsetLeft;
-        currentY = event.touches[0].clientY - canvas.offsetTop;
+        currentX = event.touches[0].clientX - canvas.getBoundingClientRect().left -CANVAS_BORDER_WIDTH;
+        currentY = event.touches[0].clientY - canvas.getBoundingClientRect().top - CANVAS_BORDER_WIDTH;
         disableScroll();
 
     });
@@ -85,10 +93,10 @@ function prepareCanvas() {
 
         if (isPainting) {
             previousX = currentX;
-            currentX = event.touches[0].clientX - canvas.offsetLeft;
+            currentX = event.touches[0].clientX - canvas.getBoundingClientRect().left - CANVAS_BORDER_WIDTH;
 
             previousY = currentY;
-            currentY = event.touches[0].clientY - canvas.offsetTop;
+            currentY = event.touches[0].clientY - canvas.getBoundingClientRect().top - CANVAS_BORDER_WIDTH;
 
             draw();
         }

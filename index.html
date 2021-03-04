@@ -16,35 +16,48 @@
 
 
   <!-- TODO: Add Javascript files here -->
-  <script src='drawing.js'></script>
+ 
   <script src='processing.js'></script>
-  <script src='maths.js'></script>
+  
 
 </head>
 
 <body>
 
-  <div class='container'>
+  <div id='header'>
 
-    <!-- TODO: Add title here -->
     <h1 id='title'>Math Garden</h1>
-    <h1 id='instruction'>Draw the correct answer in the black box with your mouse or your finger as neatly as possible</h1>
-    <h2 id='question'><span id='n1'>3</span> <span id='operator'>+</span> <span id='n2'>2</span> = </h2>
-
-    <!-- TODO: Add a drawing canvas here -->
-    <canvas id='my-canvas' width='300' height='300'></canvas>
+    <button id='additionButton' class='btn' value='Check'>+</button>
+    <button id='substractionButton' class='btn' value='Check'>-</button>
+    <!-- <h2 id='instruction'>Draw the correct answer in the black box with your mouse or your finger as neatly as possible</h2> -->
 
   </div>
 
-  <div class='container'>
+  <div id='question'>
+    <h2 id='equation'><span id='n1'>3</span> <span id='operator'>+</span> <span id='n2'>2</span> = </h2>
+
+    <canvas id='my-canvas' class='canvas1' width='300' height='300'></canvas>
+  </div>
+
+  <div id='answer'>
     <button id='checkAnswer' class='btn' value='Check'>Check Answer</button>
   </div>
 
-  <!-- TODO: Set up TF model and drawing logic-->
+  <script src='drawing.js'></script>
+  <script src='maths.js'></script>
+
   <script>
     loadModel();
     prepareCanvas();
     nextQuestion();
+
+    
+    
+    // if (questionType == 0) {
+    //   nextAddQuestion();
+    // } else {
+    //   nextSubQuestion();
+    // }
 
     document.getElementById('checkAnswer').addEventListener('click', function () {
       checkAnswer();
@@ -52,7 +65,6 @@
       nextQuestion();
     });
   </script>
-
 </body>
 
 </html>
