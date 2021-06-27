@@ -17,8 +17,8 @@ document.getElementById('additionButton').addEventListener('click', function () 
             
   });
 
-document.getElementById('substractionButton').addEventListener('click', function () {
-    const subMessage = confirm('You will stop growing this garden and start\na new garden based on Substractions!');
+document.getElementById('subtractionButton').addEventListener('click', function () {
+    const subMessage = confirm('You will stop growing this garden and start\na new garden based on Subtractions!');
     if (subMessage == true) {
         questionType = 1;
         score = 0;
@@ -35,17 +35,17 @@ function nextQuestion() {
     if (questionType == 0) {
         console.log('This is an addition');
         document.getElementById('operator').innerHTML = '+'
-        const n1 = Math.floor(Math.random() * 5);
+        const n1 = Math.floor(Math.random() * 10);
         document.getElementById('n1').innerHTML = n1;
-        const n2 = Math.floor(Math.random() * 6);
+        const n2 = Math.floor(Math.random() * (10 - n1));
         document.getElementById('n2').innerHTML = n2;
         answer = n1 + n2;
     } else {
         console.log('This is a subtraction');
         document.getElementById('operator').innerHTML = '-'
-        const n1 = 9 - Math.floor(Math.random() * 5);
+        const n1 = Math.floor(Math.random() * 10);
         document.getElementById('n1').innerHTML = n1;
-        const n2 = Math.floor(Math.random() * 6);
+        const n2 = Math.floor(Math.random() * (n1 + 1));
         document.getElementById('n2').innerHTML = n2;
         answer = n1 - n2;
     }

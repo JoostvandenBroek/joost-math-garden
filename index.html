@@ -28,7 +28,7 @@
 
     <h1 id='title'>Math Garden</h1>
     <button id='additionButton' class='btn' value='Check'>+</button>
-    <button id='substractionButton' class='btn' value='Check'>-</button>
+    <button id='subtractionButton' class='btn' value='Check'>-</button>
     <!-- <h2 id='instruction'>Draw the correct answer in the black box with your mouse or your finger as neatly as possible</h2> -->
 
   </div>
@@ -41,6 +41,7 @@
 
   <div id='answer'>
     <button id='checkAnswer' class='btn' value='Check'>Check Answer</button>
+    <button id='eraseAnswer'>Erase</button>
   </div>
 
   <script src='drawing.js'></script>
@@ -58,6 +59,10 @@
     // } else {
     //   nextSubQuestion();
     // }
+
+    document.getElementById('eraseAnswer').addEventListener('click', function () {
+      clearCanvas();
+    })
 
     document.getElementById('checkAnswer').addEventListener('click', function () {
       checkAnswer();
